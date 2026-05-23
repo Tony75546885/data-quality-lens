@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "data-quality-lens"
+version = "0.1.0"
+description = "A lightweight Python CLI that profiles CSV files and generates data quality reports."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Antoni Setkowicz" }]
+keywords = ["python", "csv", "data-quality", "cli", "analytics"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["ruff>=0.4"]
+
+[project.scripts]
+dqlens = "data_quality_lens.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/data_quality_lens"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
