@@ -4,6 +4,9 @@ Data Quality Lens is a small but complete Python portfolio project: a command-li
 tool that inspects CSV files, detects common data quality problems, and generates
 human-readable Markdown reports plus machine-readable JSON summaries.
 
+[![CI](https://github.com/Tony75546885/data-quality-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/Tony75546885/data-quality-lens/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 It demonstrates:
 
 - clean `src/` package structure
