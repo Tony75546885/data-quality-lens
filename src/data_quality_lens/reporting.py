@@ -26,7 +26,9 @@ def render_markdown(report: DataQualityReport) -> str:
 
     for column in report.columns:
         lines.append(
-            "| {name} | {type} | {missing} ({missing_rate:.0%}) | {unique} | {min} | {max} | {mean} | {samples} |".format(
+            "| {name} | {type} | {missing} ({missing_rate:.0%})"
+            " | {unique} | {min} | {max} | {mean}"
+            " | {samples} |".format(
                 name=_escape_pipe(column.name),
                 type=column.inferred_type,
                 missing=column.missing_values,

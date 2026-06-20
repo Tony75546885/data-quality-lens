@@ -41,7 +41,8 @@ def analyze_csv(path: str | Path, *, max_examples: int = 5) -> DataQualityReport
     issues = _detect_dataset_issues(rows, duplicate_rows)
     for profile in profiles:
         issues.extend(_detect_column_issues(profile))
-        issues.extend(_detect_outliers(profile, [row.get(profile.name, "") for row in rows], max_examples))
+        raw_values = [row.get(profile.name, "") for row in rows]
+        issues.extend(_detect_outliers(profile, raw_values, max_examples))
 
     return DataQualityReport(
         source_path=str(csv_path),
@@ -60,7 +61,10 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
 
 
 def _count_duplicate_rows(rows: list[dict[str, str]], fieldnames: list[str]) -> int:
-    normalized_rows = [tuple(_normalize(row.get(field, "")) for field in fieldnames) for row in rows]
+    normalized_rows = [
+        tuple(_normalize(row.get(field, "")) for field in fieldnames)
+        for row in rows
+    ]
     counts = Counter(normalized_rows)
     return sum(count - 1 for count in counts.values() if count > 1)
 
